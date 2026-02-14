@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To All The Girlies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-image: url('f8ddcdc5cb1bb9c2818889b3b8e45583.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Floating Bouquets Animation */
+        .floating-bouquets {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-bouquet {
+            position: absolute;
+            font-size: 35px;
+            animation: float-up 10s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(220, 20, 60, 0.4);
+            max-width: 700px;
+            padding: 60px 50px;
+            animation: fadeIn 1s ease-in;
+            position: relative;
+            z-index: 2;
+            border: 3px solid #dc143c;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #dc143c;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: normal;
+            text-shadow: 2px 2px 4px rgba(220, 20, 60, 0.3);
+        }
+
+        .heart {
+            text-align: center;
+            font-size: 3em;
+            color: #dc143c;
+            margin-bottom: 30px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        .message {
+            line-height: 1.8;
+            color: #333;
+            font-size: 1.1em;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .message p {
+            margin-bottom: 20px;
+        }
+
+        .signature {
+            text-align: right;
+            font-style: italic;
+            color: #666;
+            margin-top: 40px;
+            font-size: 1.2em;
+        }
+
+        .decorative-line {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #dc143c, #8b0000);
+            margin: 30px auto;
+            border-radius: 2px;
+        }
+
+        .stars {
+            text-align: center;
+            font-size: 1.5em;
+            color: #dc143c;
+            margin: 20px 0;
+            letter-spacing: 5px;
+        }
+
+        /* Gift Button */
+        .gift-button {
+            display: block;
+            margin: 40px auto 20px;
+            padding: 20px 50px;
+            font-size: 1.3em;
+            font-family: 'Georgia', serif;
+            color: white;
+            background: linear-gradient(135deg, #dc143c, #8b0000);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(220, 20, 60, 0.5);
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .gift-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(220, 20, 60, 0.7);
+            background: linear-gradient(135deg, #ff0000, #8b0000);
+        }
+
+        .gift-button:active {
+            transform: translateY(-2px);
+        }
+
+        /* Modal/Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            position: relative;
+            background: linear-gradient(135deg, #fff 0%, #ffe6e6 100%);
+            margin: 5% auto;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 20px;
+            text-align: center;
+            animation: modalSlideIn 0.5s ease;
+            border: 3px solid #dc143c;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-100px) scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 35px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: #dc143c;
+        }
+
+        .bouquet {
+            font-size: 120px;
+            margin: 20px 0;
+            animation: bouquetPop 0.6s ease;
+        }
+
+        @keyframes bouquetPop {
+            0% {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2) rotate(10deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .modal-caption {
+            font-size: 2.5em;
+            color: #dc143c;
+            font-weight: bold;
+            margin: 20px 0;
+            font-family: 'Georgia', serif;
+            text-shadow: 2px 2px 4px rgba(220, 20, 60, 0.3);
+        }
+
+        .modal-message {
+            font-size: 1.2em;
+            color: #666;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        /* Confetti Effect */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #dc143c;
+            position: absolute;
+            animation: confetti-fall 3s linear;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Sparkle Effect */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            animation: sparkle-anim 1s ease-out;
+        }
+
+        @keyframes sparkle-anim {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5) rotate(180deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Bouquets Background -->
+    <div class="floating-bouquets" id="floatingBouquets"></div>
+
+    <div class="container">
+        <h1>To All The Amazing Girlies</h1>
+        
+        <div class="heart">💕</div>
+        
+        <div class="decorative-line"></div>
+        
+        <div class="message">
+            <p>
+                To every girl reading this: You are extraordinary. You are powerful. You are worthy of every good thing that comes your way, and so much more.
+            </p>
+            
+            <p>
+                In a world that sometimes tries to dim your light, never forget that your shine is your superpower. Your laughter, your dreams, your kindness, your strength – they all matter. You matter.
+            </p>
+            
+            <p>
+                Whether you're conquering goals, navigating challenges, or simply getting through the day – you're doing amazing. Your journey is uniquely yours, and there's no timeline you need to follow except your own.
+            </p>
+            
+            <p>
+                Remember to be as kind to yourself as you are to others. Celebrate your wins, no matter how small. Forgive yourself for the stumbles. You're growing, learning, and becoming more of who you're meant to be with each passing day.
+            </p>
+            
+            <p>
+                To the dreamers, the fighters, the lovers, the artists, the queens – this is your reminder that you are enough, exactly as you are. Your presence in this world makes it brighter, more beautiful, and infinitely better.
+            </p>
+            
+            <p>
+                Keep shining, keep believing, keep being the incredible woman you are. The world needs your magic. 💫
+            </p>
+        </div>
+        
+        <div class="stars">🌹 🌹 🌹</div>
+        
+        <button class="gift-button" onclick="openGift()">🎁 Open Your Gift 🎁</button>
+        
+        <div class="signature">
+            With love and admiration,<br>
+            For every girl who needs to hear this ❤️
+        </div>
+    </div>
+
+    <!-- Modal/Popup -->
+    <div id="giftModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeGift()">&times;</span>
+            <div class="bouquet">💐🌹💐</div>
+            <div class="modal-caption">Happy Heart's Day!</div>
+            <div class="modal-message">
+                You deserve all the love, joy, and beautiful moments! 💖<br>
+                Here's to celebrating YOU today and every day!<br>
+                Stay beautiful, stay strong, stay YOU! ✨
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating bouquets
+        function createFloatingBouquet() {
+            const bouquetsContainer = document.getElementById('floatingBouquets');
+            const bouquet = document.createElement('div');
+            bouquet.classList.add('floating-bouquet');
+            
+            // Random bouquet emojis
+            const bouquets = ['💐', '🌹', '🌺', '🌸', '🌷', '💝'];
+            bouquet.innerHTML = bouquets[Math.floor(Math.random() * bouquets.length)];
+            
+            bouquet.style.left = Math.random() * 100 + '%';
+            bouquet.style.animationDelay = Math.random() * 5 + 's';
+            bouquet.style.fontSize = (Math.random() * 20 + 30) + 'px';
+            bouquetsContainer.appendChild(bouquet);
+
+            // Remove bouquet after animation
+            setTimeout(() => {
+                bouquet.remove();
+            }, 10000);
+        }
+
+        // Create bouquets continuously
+        setInterval(createFloatingBouquet, 600);
+
+        // Initialize some bouquets
+        for (let i = 0; i < 8; i++) {
+            setTimeout(createFloatingBouquet, i * 400);
+        }
+
+        // Open gift modal
+        function openGift() {
+            document.getElementById('giftModal').style.display = 'block';
+            createConfetti();
+            createSparkles();
+        }
+
+        // Close gift modal
+        function closeGift() {
+            document.getElementById('giftModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('giftModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#dc143c', '#ff0000', '#8b0000', '#ff6b6b', '#c41e3a'];
+            for (let i = 0; i < 60; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 3000);
+                }, i * 30);
+            }
+        }
+
+        // Create sparkles effect
+        function createSparkles() {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.classList.add('sparkle');
+                    sparkle.innerHTML = '✨';
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.top = Math.random() * 100 + '%';
+                    sparkle.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                    document.body.appendChild(sparkle);
+
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 1000);
+                }, i * 50);
+            }
+        }
+
+        // Add click sparkle effect
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('gift-button')) return;
+            
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.innerHTML = '💖';
+            sparkle.style.left = e.pageX + 'px';
+            sparkle.style.top = e.pageY + 'px';
+            sparkle.style.fontSize = '20px';
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
